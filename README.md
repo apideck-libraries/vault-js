@@ -1,103 +1,95 @@
-# TSDX User Guide
+# Vault JS
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+A vanilla JavaScript library to embed [Apideck Vault](https://www.apideck.com/products/vault) in any web application.
 
-> This TSDX setup is meant for developing libraries (not apps!) that can be published to NPM. If you’re looking to build a Node app, you could use `ts-node-dev`, plain `ts-node`, or simple `tsc`.
+Looking for a framework specific package?
 
-> If you’re new to TypeScript, checkout [this handy cheatsheet](https://devhints.io/typescript)
+- [React Vault](https://github.com/apideck-libraries/react-vault)
+- [Vue Vault](https://github.com/apideck-libraries/vue-vault)
 
-## Commands
+## Installation
 
-TSDX scaffolds your new library inside `/src`.
+### Package
 
-To run TSDX, use:
-
-```bash
-npm start # or yarn start
+```sh
+npm install @apideck/vault-js
 ```
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
+### Script
 
-To do a one-off build, use `npm run build` or `yarn build`.
+If you don't want to set up a build environment, you can get vault-js from a CDN like unpkg.com and it will be globally available through the `window.ApideckVault` object.
 
-To run tests, use `npm test` or `yarn test`.
-
-## Configuration
-
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
-
-### Jest
-
-Jest tests are set up to run with `npm test` or `yarn test`.
-
-### Bundle Analysis
-
-[`size-limit`](https://github.com/ai/size-limit) is set up to calculate the real cost of your library with `npm run size` and visualize the bundle with `npm run analyze`.
-
-#### Setup Files
-
-This is the folder structure we set up for you:
-
-```txt
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
+```
+<script src="https://unpkg.com/@apideck/vault-js"></script>
 ```
 
-### Rollup
+## Prerequisites
 
-TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
+Before opening the Vault modal with vault-js, you need to create a Vault session from your backend using the Vault API or one of our SDKs. Find out more [here]().
 
-### TypeScript
+## Usage
 
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### GitHub Actions
-
-Two actions are added by default:
-
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [`size-limit`](https://github.com/ai/size-limit)
-
-## Optimizations
-
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
+Pass the JWT you got from the Vault session to the vault-js:
 
 ```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
+import { ApideckVault } from '@apideck/vault-js';
 
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
-}
+ApideckVault.open({
+  token: jwtSessionToken
+})
 ```
 
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
+If you want to scope the connection results to a single Unified API, you can do that by giving the `unifiedApi` prop. If you want to open Vault for only a single connector, you should also provide the `serviceId`.
 
-## Module Formats
+```js
+import { Vault } from '@apideck/react-vault';
 
-CJS, ESModules, and UMD module formats are supported.
+const MyComponent = () => {
+  return (
+    <Vault
+      token="REPLACE_WITH_SESSION_TOKEN"
+      unifiedApi="accounting"
+      serviceId="quickbooks"
+      trigger={<button>Open Vault</button>}
+    />
+  );
+};
 
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
+export default MyComponent;
+```
 
-## Named Exports
+If you want to get notified when the modal opens and closes, you can provide the `onReady` and `onClose` options.
 
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
+```jsx
+import { Button } from '@apideck/components';
+import { Vault } from '@apideck/react-vault';
+import { useState } from 'react';
 
-## Including Styles
+const VaultButton = ({ token }) => {
+  const [openVault, setOpenVault] = useState(false);
 
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
+  const toggleVault = () => {
+    setOpenVault(!openVault);
+  };
 
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
+  return (
+    <div className="flex items-center space-x-3">
+      <Button text="Open Vault" onClick={toggleVault} />
+      <Vault token={token} open={openVault} onClose={toggleVault} />
+    </div>
+  );
+};
 
-## Publishing to NPM
+export default VaultButton;
+```
 
-We recommend using [np](https://github.com/sindresorhus/np).
+### Properties
+
+| Property        | Type    | Required | Default | Description                                                                                                                                       |
+| --------------- | ------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| token           | string  | true     | -       | The JSON Web Token returned from the Create Session call                                                                                          |
+| trigger         | element | false    | -       | The component that should trigger the Vault modal on click                                                                                        |
+| showAttribution | boolean | false    | true    | Show "Powered by Apideck" in the backdrop of the modal backdrop                                                                                   |                                                                                                     |
+| onClose         | event   | false    | -       | Function that gets called when the modal is closed                                                                                                |
+| unifiedApi      | string  | false    | -       | When unifiedApi is provided it will scope the connection results to that API. If also a serviceId is provided Vault opens for a single connection |
+| serviceId       | string  | false    | -       | When unifiedApi and serviceId are provided Vault opens a single connection                                                                        |
