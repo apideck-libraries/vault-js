@@ -19,77 +19,61 @@ npm install @apideck/vault-js
 
 If you don't want to set up a build environment, you can get vault-js from a CDN like unpkg.com and it will be globally available through the `window.ApideckVault` object.
 
-```
+```html
 <script src="https://unpkg.com/@apideck/vault-js"></script>
 ```
 
 ## Prerequisites
 
-Before opening the Vault modal with vault-js, you need to create a Vault session from your backend using the Vault API or one of our SDKs. Find out more [here]().
+Before opening the Vault modal with vault-js, you need to create a Vault session from your backend using the Vault API or one of our [SDKs](https://docs.apideck.com/sdks). Find out more in the [docs](https://docs.apideck.com/apis/vault/reference#operation/sessionsCreate).
 
 ## Usage
 
-Pass the JWT you got from the Vault session to the vault-js:
+Pass the JWT you got from the Vault session to `vault-js`:
 
 ```js
 import { ApideckVault } from '@apideck/vault-js';
 
 ApideckVault.open({
-  token: jwtSessionToken
-})
+  token: 'REPLACE_WITH_SESSION_TOKEN',
+});
 ```
 
-If you want to scope the connection results to a single Unified API, you can do that by giving the `unifiedApi` prop. If you want to open Vault for only a single connector, you should also provide the `serviceId`.
+If you want to only show integrations for a single Unified API, you can do that by passing the `unifiedApi` option. If you want to open Vault for only a single integration, you can provide the `serviceId` option.
 
 ```js
-import { Vault } from '@apideck/react-vault';
+import { ApideckVault } from '@apideck/vault-js';
 
-const MyComponent = () => {
-  return (
-    <Vault
-      token="REPLACE_WITH_SESSION_TOKEN"
-      unifiedApi="accounting"
-      serviceId="quickbooks"
-      trigger={<button>Open Vault</button>}
-    />
-  );
-};
-
-export default MyComponent;
+ApideckVault.open({
+  token: 'REPLACE_WITH_SESSION_TOKEN',
+  unifiedApi: 'accounting',
+  serviceId: 'quickbooks',
+});
 ```
 
 If you want to get notified when the modal opens and closes, you can provide the `onReady` and `onClose` options.
 
 ```jsx
-import { Button } from '@apideck/components';
-import { Vault } from '@apideck/react-vault';
-import { useState } from 'react';
+import { ApideckVault } from '@apideck/vault-js';
 
-const VaultButton = ({ token }) => {
-  const [openVault, setOpenVault] = useState(false);
-
-  const toggleVault = () => {
-    setOpenVault(!openVault);
-  };
-
-  return (
-    <div className="flex items-center space-x-3">
-      <Button text="Open Vault" onClick={toggleVault} />
-      <Vault token={token} open={openVault} onClose={toggleVault} />
-    </div>
-  );
-};
-
-export default VaultButton;
+ApideckVault.open({
+  token: 'REPLACE_WITH_SESSION_TOKEN',
+  onClose: () => {
+    console.log('closed!');
+  },
+  onReady: () => {
+    console.log('ready!');
+  },
+});
 ```
 
 ### Properties
 
-| Property        | Type    | Required | Default | Description                                                                                                                                       |
-| --------------- | ------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| token           | string  | true     | -       | The JSON Web Token returned from the Create Session call                                                                                          |
-| trigger         | element | false    | -       | The component that should trigger the Vault modal on click                                                                                        |
-| showAttribution | boolean | false    | true    | Show "Powered by Apideck" in the backdrop of the modal backdrop                                                                                   |                                                                                                     |
-| onClose         | event   | false    | -       | Function that gets called when the modal is closed                                                                                                |
-| unifiedApi      | string  | false    | -       | When unifiedApi is provided it will scope the connection results to that API. If also a serviceId is provided Vault opens for a single connection |
-| serviceId       | string  | false    | -       | When unifiedApi and serviceId are provided Vault opens a single connection                                                                        |
+| Property        | Type    | Required | Default | Description                                                                                                                       |
+| --------------- | ------- | -------- | ------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| token           | string  | true     | -       | The JSON Web Token returned from the [Create Session API](https://docs.apideck.com/apis/vault/reference#operation/sessionsCreate) |
+| showAttribution | boolean | false    | true    | Show "Powered by Apideck" in the backdrop of the modal backdrop                                                                   |
+| onClose         | event   | false    | -       | Function that gets called when the modal is closed                                                                                |
+| onReady         | event   | false    | -       | Function that gets called when the modal is opened                                                                                |
+| unifiedApi      | string  | false    | -       | When unifiedApi is provided it will only show integrations from that API.                                                         |
+| serviceId       | string  | false    | -       | When unifiedApi and serviceId are provided Vault opens a single integration                                                       |
