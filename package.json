@@ -19,7 +19,8 @@
     "prepare": "yarn build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "dev": "parcel dev/index.html"
+    "dev": "parcel dev/index.html",
+    "release": "np"
   },
   "peerDependencies": {},
   "husky": {
@@ -52,6 +53,7 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.1.0",
     "husky": "^8.0.2",
+    "np": "^7.6.2",
     "parcel": "^2.8.2",
     "size-limit": "^8.1.0",
     "tsdx": "^0.14.1",
