@@ -25,14 +25,16 @@ const createApideckVault = () => {
   };
 
   return {
-    open({ onClose, ...options }: ApideckVaultOptions): void {
+    open(options: ApideckVaultOptions): void {
+      const { onClose, onReady, ...otherOptions } = options;
       const modal = createModal();
       document.body.appendChild(modal);
 
       const onMessage = (event: MessageEvent) => {
         if (event.data === 'on-ready') {
           modal.style.display = 'block';
-          modal.contentWindow?.postMessage(options, vaultIframeUrl);
+          modal.contentWindow?.postMessage(otherOptions, vaultIframeUrl);
+          onReady && onReady();
         }
 
         if (event.data === 'on-close') {
