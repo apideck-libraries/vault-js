@@ -4,12 +4,18 @@
   "main": "dist/index.js",
   "browser": "dist/vault-js.umd.production.min.js",
   "typings": "dist/index.d.ts",
+  "repository": "https://github.com/apideck-libraries/reva",
   "files": [
     "dist",
     "src"
   ],
+  "keywords": [
+    "apideck",
+    "vault",
+    "javascript"
+  ],
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "scripts": {
     "start": "tsdx watch",
