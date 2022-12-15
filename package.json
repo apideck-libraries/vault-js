@@ -2,7 +2,7 @@
   "version": "0.1.5",
   "license": "MIT",
   "main": "dist/index.js",
-  "browser": "dist/vault-js.umd.production.min.js",
+  "unpkg": "dist/vault-js.umd.production.min.js",
   "typings": "dist/index.d.ts",
   "repository": "https://github.com/apideck-libraries/vault-js",
   "files": [
