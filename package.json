@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "browser": "dist/vault-js.umd.production.min.js",
   "typings": "dist/index.d.ts",
-  "repository": "https://github.com/apideck-libraries/reva",
+  "repository": "https://github.com/apideck-libraries/vault-js",
   "files": [
     "dist",
     "src"
