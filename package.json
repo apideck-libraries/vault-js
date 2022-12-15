@@ -33,7 +33,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "vault-js",
+  "name": "@apideck/vault-js",
   "author": "Elias Meire",
   "module": "dist/vault-js.esm.js",
   "size-limit": [
