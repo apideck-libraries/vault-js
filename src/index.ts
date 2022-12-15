@@ -3,6 +3,7 @@ export interface ApideckVaultOptions {
   unifiedApi?: string;
   serviceId?: string;
   onClose?: () => void;
+  onReady?: () => void;
 }
 
 const createApideckVault = () => {
@@ -27,7 +28,7 @@ const createApideckVault = () => {
       const modal = createModal();
       document.body.appendChild(modal);
 
-      window.addEventListener('message', event => {
+      const onMessage = (event: MessageEvent) => {
         if (event.data === 'on-ready') {
           modal.style.display = 'block';
           modal.contentWindow?.postMessage(options, vaultIframeUrl);
@@ -39,9 +40,12 @@ const createApideckVault = () => {
           // Remove the iframe from the DOM after transition animation
           setTimeout(() => {
             document.body.removeChild(modal);
+            window.removeEventListener('message', onMessage);
           }, 300);
         }
-      });
+      };
+
+      window.addEventListener('message', onMessage);
     },
   };
 };
