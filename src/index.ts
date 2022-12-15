@@ -2,6 +2,7 @@ export interface ApideckVaultOptions {
   token: string;
   unifiedApi?: string;
   serviceId?: string;
+  showAttribution?: boolean;
   onClose?: () => void;
   onReady?: () => void;
 }
