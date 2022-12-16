@@ -1,3 +1,5 @@
+<img src="https://user-images.githubusercontent.com/8850410/208065819-716c6e02-98c9-4df5-b687-e5acd1e3c4e5.png" width="100%" />
+
 # Vault JS
 
 A vanilla JavaScript library to embed [Apideck Vault](https://www.apideck.com/products/vault) in any web application.
