@@ -1,13 +1,10 @@
-<img src="https://user-images.githubusercontent.com/8850410/208065819-716c6e02-98c9-4df5-b687-e5acd1e3c4e5.png" width="100%" />
-
 # Vault JS
 
 A vanilla JavaScript library to embed [Apideck Vault](https://www.apideck.com/products/vault) in any web application.
 
-Looking for a framework specific package?
+<img src="https://user-images.githubusercontent.com/8850410/208065819-716c6e02-98c9-4df5-b687-e5acd1e3c4e5.png" width="100%" />
 
-- [React Vault](https://github.com/apideck-libraries/react-vault)
-- [Vue Vault](https://github.com/apideck-libraries/vue-vault)
+**Vault JS** | [React Vault](https://github.com/apideck-libraries/react-vault) | [Vue Vault](https://github.com/apideck-libraries/vue-vault)
 
 ## Installation
 
@@ -19,7 +16,7 @@ npm install @apideck/vault-js
 
 ### Script
 
-If you don't want to set up a build environment, you can get vault-js from a CDN like unpkg.com and it will be globally available through the `window.ApideckVault` object.
+If you don't want to set up a build environment, you can get `@apideck/vault-js` from a CDN like unpkg.com and it will be globally available through the `window.ApideckVault` object.
 
 ```html
 <script src="https://unpkg.com/@apideck/vault-js"></script>
@@ -27,11 +24,11 @@ If you don't want to set up a build environment, you can get vault-js from a CDN
 
 ## Prerequisites
 
-Before opening the Vault modal with vault-js, you need to create a Vault session from your backend using the Vault API or one of our [SDKs](https://docs.apideck.com/sdks). Find out more in the [docs](https://docs.apideck.com/apis/vault/reference#operation/sessionsCreate).
+Before opening the Vault modal with `@apideck/vault-js`, you need to create a Vault session from your backend using the Vault API or one of our [SDKs](https://docs.apideck.com/sdks). Find out more in the [docs](https://docs.apideck.com/apis/vault/reference#operation/sessionsCreate).
 
 ## Usage
 
-Pass the JWT you got from the Vault session to `vault-js`:
+Pass the JWT you got from the Vault session to `@apideck/vault-js`:
 
 ```js
 import { ApideckVault } from '@apideck/vault-js';
