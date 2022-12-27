@@ -1,8 +1,13 @@
+<img src="https://user-images.githubusercontent.com/8850410/208065819-716c6e02-98c9-4df5-b687-e5acd1e3c4e5.png" width="100%" />
+
+<p align="left">
+  <a href="https://www.npmjs.com/package/@apideck/vault-js"><img src="https://img.shields.io/npm/v/@apideck/vault-js.svg" alt="Total Downloads"></a>
+  <a href="https://www.npmjs.com/package/@apideck/vault-js"><img src="https://img.shields.io/npm/dw/@apideck/vault-js.svg" alt="Latest Stable Version"></a>
+</p>
+
 # Vault JS
 
 A vanilla JavaScript library to embed [Apideck Vault](https://www.apideck.com/products/vault) in any web application.
-
-<img src="https://user-images.githubusercontent.com/8850410/208065819-716c6e02-98c9-4df5-b687-e5acd1e3c4e5.png" width="100%" />
 
 **Vault JS** | [React Vault](https://github.com/apideck-libraries/react-vault) | [Vue Vault](https://github.com/apideck-libraries/vue-vault)
 
