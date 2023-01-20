@@ -71,6 +71,8 @@ ApideckVault.open({
 });
 ```
 
+If you want to show a logo on top of the modal, you can set the `logo` property on the `theme` object you can provide through the session. [View Vault API documentation](https://developers.apideck.com/apis/vault/reference#operation/sessionsCreate).
+
 ### Properties
 
 | Property        | Type    | Required | Default | Description                                                                                                                       |
@@ -81,3 +83,4 @@ ApideckVault.open({
 | onReady         | event   | false    | -       | Function that gets called when the modal is opened                                                                                |
 | unifiedApi      | string  | false    | -       | When unifiedApi is provided it will only show integrations from that API.                                                         |
 | serviceId       | string  | false    | -       | When unifiedApi and serviceId are provided Vault opens a single integration                                                       |
+| showConsumer    | boolean | false    | false   | If true it shows the current consumer metadata at the bottom of the modal                                                         |

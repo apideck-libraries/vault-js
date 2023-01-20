@@ -3,6 +3,7 @@ export interface ApideckVaultOptions {
   unifiedApi?: string;
   serviceId?: string;
   showAttribution?: boolean;
+  showConsumer?: boolean;
   onClose?: () => void;
   onReady?: () => void;
 }
