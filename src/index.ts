@@ -6,6 +6,7 @@ export interface ApideckVaultOptions {
   showConsumer?: boolean;
   onClose?: () => void;
   onReady?: () => void;
+  unifyBaseUrl?: string;
 }
 
 const createApideckVault = () => {
