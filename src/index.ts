@@ -63,5 +63,5 @@ const createApideckVault = () => {
   };
 };
 
-export * from './types';
+export { Connection, ApideckVaultOptions } from './types';
 export const ApideckVault = createApideckVault();
