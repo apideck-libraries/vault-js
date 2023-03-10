@@ -1,13 +1,4 @@
-export interface ApideckVaultOptions {
-  token: string;
-  unifiedApi?: string;
-  serviceId?: string;
-  showAttribution?: boolean;
-  showConsumer?: boolean;
-  onClose?: () => void;
-  onReady?: () => void;
-  unifyBaseUrl?: string;
-}
+import { ApideckVaultOptions } from './types';
 
 const createApideckVault = () => {
   const vaultIframeUrl = 'https://vaultjs.apideck.com';
@@ -28,7 +19,13 @@ const createApideckVault = () => {
 
   return {
     open(options: ApideckVaultOptions): void {
-      const { onClose, onReady, ...otherOptions } = options;
+      const {
+        onClose,
+        onReady,
+        onConnectionChange,
+        onConnectionDelete,
+        ...otherOptions
+      } = options;
       const modal = createModal();
       document.body.appendChild(modal);
 
@@ -36,17 +33,28 @@ const createApideckVault = () => {
         if (event.data === 'on-ready') {
           modal.style.display = 'block';
           modal.contentWindow?.postMessage(otherOptions, vaultIframeUrl);
-          onReady && onReady();
+          onReady?.();
         }
 
         if (event.data === 'on-close') {
-          onClose && onClose();
+          onClose?.();
 
           // Remove the iframe from the DOM after transition animation
           setTimeout(() => {
             document.body.removeChild(modal);
             window.removeEventListener('message', onMessage);
           }, 300);
+        }
+
+        if (typeof event.data === 'object' && event.data?.data) {
+          switch (event.data?.type) {
+            case 'on-connection-change':
+              onConnectionChange?.(event.data.data);
+              break;
+            case 'on-connection-delete':
+              onConnectionDelete?.(event.data.data);
+              break;
+          }
         }
       };
 
@@ -55,4 +63,5 @@ const createApideckVault = () => {
   };
 };
 
+export * from './types';
 export const ApideckVault = createApideckVault();

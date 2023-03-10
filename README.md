@@ -75,12 +75,14 @@ If you want to show a logo on top of the modal, you can set the `logo` property 
 
 ### Properties
 
-| Property        | Type    | Required | Default | Description                                                                                                                       |
-| --------------- | ------- | -------- | ------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| token           | string  | true     | -       | The JSON Web Token returned from the [Create Session API](https://docs.apideck.com/apis/vault/reference#operation/sessionsCreate) |
-| showAttribution | boolean | false    | true    | Show "Powered by Apideck" in the backdrop of the modal backdrop                                                                   |
-| onClose         | event   | false    | -       | Function that gets called when the modal is closed                                                                                |
-| onReady         | event   | false    | -       | Function that gets called when the modal is opened                                                                                |
-| unifiedApi      | string  | false    | -       | When unifiedApi is provided it will only show integrations from that API.                                                         |
-| serviceId       | string  | false    | -       | When unifiedApi and serviceId are provided Vault opens a single integration                                                       |
-| showConsumer    | boolean | false    | false   | If true it shows the current consumer metadata at the bottom of the modal                                                         |
+| Property           | Type                             | Required | Default | Description                                                                                                                                      |
+| ------------------ | -------------------------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| token              | string                           | true     | -       | The JSON Web Token returned from the [Create Session API](https://docs.apideck.com/apis/vault/reference#operation/sessionsCreate)                |
+| showAttribution    | boolean                          | false    | true    | Show "Powered by Apideck" in the backdrop of the modal backdrop                                                                                  |
+| onReady            | event                            | false    | -       | Function that gets called when the modal is opened                                                                                               |
+| onClose            | () => void                       | false    | -       | Function that gets called when the modal is closed                                                                                               |
+| onConnectionChange | (connection: Connection) => void | false    | -       | Function that gets called when the user updates a connection. This can be linking their account, filling out settings or adding a new connection |
+| onConnectionDelete | (connection: Connection) => void | false    | -       | Function that gets called when the user deletes a connection                                                                                     |
+| unifiedApi         | string                           | false    | -       | When unifiedApi is provided it will only show integrations from that API.                                                                        |
+| serviceId          | string                           | false    | -       | When unifiedApi and serviceId are provided Vault opens a single integration                                                                      |
+| showConsumer       | boolean                          | false    | false   | If true it shows the current consumer metadata at the bottom of the modal                                                                        |
