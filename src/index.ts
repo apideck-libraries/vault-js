@@ -17,6 +17,8 @@ const createApideckVault = () => {
     return modal;
   };
 
+  let modal: HTMLIFrameElement | null = null;
+
   return {
     open(options: ApideckVaultOptions): void {
       const {
@@ -26,10 +28,14 @@ const createApideckVault = () => {
         onConnectionDelete,
         ...otherOptions
       } = options;
-      const modal = createModal();
+
+      modal = createModal();
+
       document.body.appendChild(modal);
 
       const onMessage = (event: MessageEvent) => {
+        if (modal === null) return;
+
         if (event.data === 'on-ready') {
           modal.style.display = 'block';
           modal.contentWindow?.postMessage(otherOptions, vaultIframeUrl);
@@ -41,6 +47,8 @@ const createApideckVault = () => {
 
           // Remove the iframe from the DOM after transition animation
           setTimeout(() => {
+            if (modal === null) return;
+
             document.body.removeChild(modal);
             window.removeEventListener('message', onMessage);
           }, 300);
@@ -60,8 +68,19 @@ const createApideckVault = () => {
 
       window.addEventListener('message', onMessage);
     },
+    close(): any {
+      if (modal === null) return;
+      modal?.contentWindow?.postMessage({ type: 'close' }, vaultIframeUrl);
+
+      // Remove the iframe from the DOM after transition animation
+      setTimeout(() => {
+        if (modal === null) return;
+        document.body.removeChild(modal);
+        modal = null;
+      }, 300);
+    },
   };
 };
 
-export { Connection, ApideckVaultOptions } from './types';
+export { ApideckVaultOptions, Connection } from './types';
 export const ApideckVault = createApideckVault();
