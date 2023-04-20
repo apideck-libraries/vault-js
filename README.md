@@ -71,6 +71,8 @@ ApideckVault.open({
 });
 ```
 
+You can also close the modal programmatically by calling `ApideckVault.close()`.
+
 If you want to show a logo on top of the modal, you can set the `logo` property on the `theme` object you can provide through the session. [View Vault API documentation](https://developers.apideck.com/apis/vault/reference#operation/sessionsCreate).
 
 ### Properties
