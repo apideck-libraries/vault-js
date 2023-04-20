@@ -78,9 +78,11 @@ If you want to show a logo on top of the modal, you can set the `logo` property 
 ### Properties
 
 | Property           | Type                             | Required | Default | Description                                                                                                                                      |
-| ------------------ | -------------------------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+|--------------------|----------------------------------|----------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------|
 | token              | string                           | true     | -       | The JSON Web Token returned from the [Create Session API](https://docs.apideck.com/apis/vault/reference#operation/sessionsCreate)                |
 | showAttribution    | boolean                          | false    | true    | Show "Powered by Apideck" in the backdrop of the modal backdrop                                                                                  |
+| open               | () => void                       | false    | -       | Function to open the Vault modal                                                                                                                 |
+| close              | () => void                       | false    | -       | Function to close the Vault modal                                                                                                                |
 | onReady            | () => void                       | false    | -       | Function that gets called when the modal is opened                                                                                               |
 | onClose            | () => void                       | false    | -       | Function that gets called when the modal is closed                                                                                               |
 | onConnectionChange | (connection: Connection) => void | false    | -       | Function that gets called when the user updates a connection. This can be linking their account, filling out settings or adding a new connection |
