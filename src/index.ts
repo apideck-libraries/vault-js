@@ -44,13 +44,13 @@ const createApideckVault = () => {
 
         if (event.data === 'on-close') {
           onClose?.();
+          window.removeEventListener('message', onMessage);
 
           // Remove the iframe from the DOM after transition animation
           setTimeout(() => {
             if (modal === null) return;
 
             document.body.removeChild(modal);
-            window.removeEventListener('message', onMessage);
           }, 300);
         }
 
