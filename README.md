@@ -9,7 +9,7 @@
 
 A vanilla JavaScript library to embed [Apideck Vault](https://www.apideck.com/products/vault) in any web application.
 
-**Vault JS** | [React Vault](https://github.com/apideck-libraries/react-vault) | [Vue Vault](https://github.com/apideck-libraries/vue-vault)
+**Vault JS** | [React Vault](https://github.com/apideck-libraries/vault-react) | [Vue Vault](https://github.com/apideck-libraries/vue-vault)
 
 ## Installation
 
