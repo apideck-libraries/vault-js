@@ -43,14 +43,15 @@ const createApideckVault = () => {
         }
 
         if (event.data === 'on-close') {
-          onClose?.();
           window.removeEventListener('message', onMessage);
+          onClose?.();
 
           // Remove the iframe from the DOM after transition animation
           setTimeout(() => {
             if (modal === null) return;
 
             document.body.removeChild(modal);
+            modal = null;
           }, 300);
         }
 
@@ -69,15 +70,14 @@ const createApideckVault = () => {
       window.addEventListener('message', onMessage);
     },
     close(): any {
-      if (modal === null) return;
       modal?.contentWindow?.postMessage({ type: 'close' }, vaultIframeUrl);
 
-      // Remove the iframe from the DOM after transition animation
+      // Fallback remove the iframe from the DOM in case the iframe doesn't send a message
       setTimeout(() => {
         if (modal === null) return;
         document.body.removeChild(modal);
         modal = null;
-      }, 300);
+      }, 500);
     },
   };
 };
