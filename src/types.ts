@@ -1,3 +1,9 @@
+export enum ConnectionViewType {
+  Settings = 'settings',
+  ConfigurableResources = 'configurable-resources',
+  CustomMapping = 'custom-mapping',
+}
+
 export interface ApideckVaultOptions {
   token: string;
   unifiedApi?: string;
@@ -9,6 +15,7 @@ export interface ApideckVaultOptions {
   onClose?: () => void;
   onConnectionChange?: (connection: Connection) => void;
   onConnectionDelete?: (connection: Connection) => void;
+  initialView?: ConnectionViewType;
 }
 
 export interface Metadata {
