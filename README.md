@@ -71,6 +71,19 @@ ApideckVault.open({
 });
 ```
 
+If you want to open a specific view you can pass the `initialView` prop. The available views are `settings`, `configurable-resources`, and `custom-mapping`.
+
+```js
+import { ApideckVault } from '@apideck/vault-js';
+
+ApideckVault.open({
+  token: 'REPLACE_WITH_SESSION_TOKEN',
+  unifiedApi: 'accounting',
+  serviceId: 'quickbooks',
+  initialView: 'custom-mapping',
+});
+```
+
 You can also close the modal programmatically by calling `ApideckVault.close()`.
 
 If you want to show a logo on top of the modal, you can set the `logo` property on the `theme` object you can provide through the session. [View Vault API documentation](https://developers.apideck.com/apis/vault/reference#operation/sessionsCreate).
@@ -78,7 +91,7 @@ If you want to show a logo on top of the modal, you can set the `logo` property 
 ### Properties
 
 | Property           | Type                             | Required | Default | Description                                                                                                                                      |
-|--------------------|----------------------------------|----------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------ | -------------------------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | token              | string                           | true     | -       | The JSON Web Token returned from the [Create Session API](https://docs.apideck.com/apis/vault/reference#operation/sessionsCreate)                |
 | showAttribution    | boolean                          | false    | true    | Show "Powered by Apideck" in the backdrop of the modal backdrop                                                                                  |
 | open               | () => void                       | false    | -       | Function to open the Vault modal                                                                                                                 |
@@ -90,3 +103,4 @@ If you want to show a logo on top of the modal, you can set the `logo` property 
 | unifiedApi         | string                           | false    | -       | When unifiedApi is provided it will only show integrations from that API.                                                                        |
 | serviceId          | string                           | false    | -       | When unifiedApi and serviceId are provided Vault opens a single integration                                                                      |
 | showConsumer       | boolean                          | false    | false   | If true it shows the current consumer metadata at the bottom of the modal                                                                        |
+| initialView        | ConnectionViewType               | false    | -       | Open Vault in a specific view for a connection session                                                                                           |
