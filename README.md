@@ -84,6 +84,17 @@ ApideckVault.open({
 });
 ```
 
+If you want to open vault in a specific language you can pass a locale. The available locales are `en` (default), `nl`, `de`, `fr`, and `es`.
+
+```js
+import { ApideckVault } from '@apideck/vault-js';
+
+ApideckVault.open({
+  token: 'REPLACE_WITH_SESSION_TOKEN',
+  locale: 'nl',
+});
+
+
 You can also close the modal programmatically by calling `ApideckVault.close()`.
 
 If you want to show a logo on top of the modal, you can set the `logo` property on the `theme` object you can provide through the session. [View Vault API documentation](https://developers.apideck.com/apis/vault/reference#operation/sessionsCreate).
@@ -104,3 +115,5 @@ If you want to show a logo on top of the modal, you can set the `logo` property 
 | serviceId          | string                           | false    | -       | When unifiedApi and serviceId are provided Vault opens a single integration                                                                      |
 | showConsumer       | boolean                          | false    | false   | If true it shows the current consumer metadata at the bottom of the modal                                                                        |
 | initialView        | ConnectionViewType               | false    | -       | Open Vault in a specific view for a connection: "settings", "configurable-resources", or "custom-mapping"                                        |
+| locale             | string                           | false    | "en"    | Open Vault in a specific language: "en", "nl", "de", "fr" or "es"                                                                                |
+```
