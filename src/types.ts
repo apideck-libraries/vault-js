@@ -17,6 +17,7 @@ export interface ApideckVaultOptions {
   onConnectionDelete?: (connection: Connection) => void;
   initialView?: ConnectionViewType;
   locale?: string; // en, fr, nl, de, es
+  showLanguageSwitch?: boolean;
 }
 
 export interface Metadata {

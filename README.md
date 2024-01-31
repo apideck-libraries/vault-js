@@ -93,7 +93,7 @@ ApideckVault.open({
   token: 'REPLACE_WITH_SESSION_TOKEN',
   locale: 'nl',
 });
-
+```
 
 You can also close the modal programmatically by calling `ApideckVault.close()`.
 
@@ -116,4 +116,4 @@ If you want to show a logo on top of the modal, you can set the `logo` property 
 | showConsumer       | boolean                          | false    | false   | If true it shows the current consumer metadata at the bottom of the modal                                                                        |
 | initialView        | ConnectionViewType               | false    | -       | Open Vault in a specific view for a connection: "settings", "configurable-resources", or "custom-mapping"                                        |
 | locale             | string                           | false    | "en"    | Open Vault in a specific language: "en", "nl", "de", "fr" or "es"                                                                                |
-```
+| showLanguageSwitch | boolean                          | false    | false   | Show language switch at bottom                                                                                                                   |
