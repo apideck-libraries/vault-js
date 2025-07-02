@@ -1,5 +1,5 @@
 {
-  "version": "1.6.0",
+  "version": "1.7.0",
   "license": "MIT",
   "main": "dist/index.js",
   "unpkg": "dist/vault-js.umd.production.min.js",
@@ -65,8 +65,5 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.4.1",
     "typescript": "^4.9.4"
-  },
-  "dependencies": {
-    "@apideck/react-vault": "^0.12.2"
   }
 }

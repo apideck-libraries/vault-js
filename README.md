@@ -95,25 +95,49 @@ ApideckVault.open({
 });
 ```
 
+You can also show a language switch at the bottom of the modal by setting the `showLanguageSwitch` property.
+
+```js
+import { ApideckVault } from '@apideck/vault-js';
+
+ApideckVault.open({
+  token: 'REPLACE_WITH_SESSION_TOKEN',
+  showLanguageSwitch: true,
+});
+```
+
+If you want to use the button layout instead of the dropdown menu in the TopBar for connection actions, you can set the `showButtonLayout` property.
+
+```js
+import { ApideckVault } from '@apideck/vault-js';
+
+ApideckVault.open({
+  token: 'REPLACE_WITH_SESSION_TOKEN',
+  showButtonLayout: true,
+});
+```
+
 You can also close the modal programmatically by calling `ApideckVault.close()`.
 
 If you want to show a logo on top of the modal, you can set the `logo` property on the `theme` object you can provide through the session. [View Vault API documentation](https://developers.apideck.com/apis/vault/reference#operation/sessionsCreate).
 
 ### Properties
 
-| Property           | Type                             | Required | Default | Description                                                                                                                                      |
-| ------------------ | -------------------------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| token              | string                           | true     | -       | The JSON Web Token returned from the [Create Session API](https://docs.apideck.com/apis/vault/reference#operation/sessionsCreate)                |
-| showAttribution    | boolean                          | false    | true    | Show "Powered by Apideck" in the backdrop of the modal backdrop                                                                                  |
-| open               | () => void                       | false    | -       | Function to open the Vault modal                                                                                                                 |
-| close              | () => void                       | false    | -       | Function to close the Vault modal                                                                                                                |
-| onReady            | () => void                       | false    | -       | Function that gets called when the modal is opened                                                                                               |
-| onClose            | () => void                       | false    | -       | Function that gets called when the modal is closed                                                                                               |
-| onConnectionChange | (connection: Connection) => void | false    | -       | Function that gets called when the user updates a connection. This can be linking their account, filling out settings or adding a new connection |
-| onConnectionDelete | (connection: Connection) => void | false    | -       | Function that gets called when the user deletes a connection                                                                                     |
-| unifiedApi         | string                           | false    | -       | When unifiedApi is provided it will only show integrations from that API.                                                                        |
-| serviceId          | string                           | false    | -       | When unifiedApi and serviceId are provided Vault opens a single integration                                                                      |
-| showConsumer       | boolean                          | false    | false   | If true it shows the current consumer metadata at the bottom of the modal                                                                        |
-| initialView        | ConnectionViewType               | false    | -       | Open Vault in a specific view for a connection: "settings", "configurable-resources", or "custom-mapping"                                        |
-| locale             | string                           | false    | "en"    | Open Vault in a specific language: "en", "nl", "de", "fr" or "es"                                                                                |
-| showLanguageSwitch | boolean                          | false    | false   | Show language switch at bottom                                                                                                                   |
+| Property               | Type                             | Required | Default | Description                                                                                                                                      |
+| ---------------------- | -------------------------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| token                  | string                           | true     | -       | The JSON Web Token returned from the [Create Session API](https://docs.apideck.com/apis/vault/reference#operation/sessionsCreate)                |
+| showAttribution        | boolean                          | false    | true    | Show "Powered by Apideck" in the backdrop of the modal backdrop                                                                                  |
+| open                   | () => void                       | false    | -       | Function to open the Vault modal                                                                                                                 |
+| close                  | () => void                       | false    | -       | Function to close the Vault modal                                                                                                                |
+| onReady                | () => void                       | false    | -       | Function that gets called when the modal is opened                                                                                               |
+| onClose                | () => void                       | false    | -       | Function that gets called when the modal is closed                                                                                               |
+| onConnectionChange     | (connection: Connection) => void | false    | -       | Function that gets called when the user updates a connection. This can be linking their account, filling out settings or adding a new connection |
+| onConnectionDelete     | (connection: Connection) => void | false    | -       | Function that gets called when the user deletes a connection                                                                                     |
+| unifiedApi             | string                           | false    | -       | When unifiedApi is provided it will only show integrations from that API.                                                                        |
+| serviceId              | string                           | false    | -       | When unifiedApi and serviceId are provided Vault opens a single integration                                                                      |
+| showConsumer           | boolean                          | false    | false   | If true it shows the current consumer metadata at the bottom of the modal                                                                        |
+| initialView            | ConnectionViewType               | false    | -       | Open Vault in a specific view for a connection: "settings", "configurable-resources", or "custom-mapping"                                        |
+| locale                 | string                           | false    | "en"    | Open Vault in a specific language: "en", "nl", "de", "fr" or "es"                                                                                |
+| showLanguageSwitch     | boolean                          | false    | false   | Show language switch at bottom                                                                                                                   |
+| showButtonLayout       | boolean                          | false    | false   | Use button layout instead of dropdown menu in TopBar for connection actions                                                                      |
+| autoStartAuthorization | boolean                          | false    | false   | If true it will automatically start the authorization process for the connection.                                                                |

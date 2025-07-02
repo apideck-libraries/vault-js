@@ -18,6 +18,8 @@ export interface ApideckVaultOptions {
   initialView?: ConnectionViewType;
   locale?: string; // en, fr, nl, de, es
   showLanguageSwitch?: boolean;
+  autoStartAuthorization?: boolean;
+  showButtonLayout?: boolean;
 }
 
 export interface Metadata {
