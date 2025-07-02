@@ -95,6 +95,28 @@ ApideckVault.open({
 });
 ```
 
+You can also show a language switch at the bottom of the modal by setting the `showLanguageSwitch` property.
+
+```js
+import { ApideckVault } from '@apideck/vault-js';
+
+ApideckVault.open({
+  token: 'REPLACE_WITH_SESSION_TOKEN',
+  showLanguageSwitch: true,
+});
+```
+
+If you want to use the button layout instead of the dropdown menu in the TopBar for connection actions, you can set the `showButtonLayout` property.
+
+```js
+import { ApideckVault } from '@apideck/vault-js';
+
+ApideckVault.open({
+  token: 'REPLACE_WITH_SESSION_TOKEN',
+  showButtonLayout: true,
+});
+```
+
 You can also close the modal programmatically by calling `ApideckVault.close()`.
 
 If you want to show a logo on top of the modal, you can set the `logo` property on the `theme` object you can provide through the session. [View Vault API documentation](https://developers.apideck.com/apis/vault/reference#operation/sessionsCreate).
@@ -117,4 +139,5 @@ If you want to show a logo on top of the modal, you can set the `logo` property 
 | initialView            | ConnectionViewType               | false    | -       | Open Vault in a specific view for a connection: "settings", "configurable-resources", or "custom-mapping"                                        |
 | locale                 | string                           | false    | "en"    | Open Vault in a specific language: "en", "nl", "de", "fr" or "es"                                                                                |
 | showLanguageSwitch     | boolean                          | false    | false   | Show language switch at bottom                                                                                                                   |
+| showButtonLayout       | boolean                          | false    | false   | Use button layout instead of dropdown menu in TopBar for connection actions                                                                      |
 | autoStartAuthorization | boolean                          | false    | false   | If true it will automatically start the authorization process for the connection.                                                                |
