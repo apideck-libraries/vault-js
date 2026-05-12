@@ -1,0 +1,563 @@
+[
+  {
+    "name": "alan-code-reviewer",
+    "path": "agents/alan-code-reviewer.md",
+    "description": "Review changed TypeScript and shell code for quality, conventions, and AI-generated code concerns. Report findings only.",
+    "category": "agent",
+    "section": "Codebase",
+    "triggers": [
+      "review this PR",
+      "review this code change",
+      "code quality check"
+    ]
+  },
+  {
+    "name": "alan-codebase-analyzer",
+    "path": "agents/alan-codebase-analyzer.md",
+    "description": "Analyze implementation details and trace data flow with file:line references.",
+    "category": "agent",
+    "section": "Codebase",
+    "triggers": [
+      "analyze this code",
+      "trace how X works",
+      "explain the data flow"
+    ]
+  },
+  {
+    "name": "alan-codebase-locator",
+    "path": "agents/alan-codebase-locator.md",
+    "description": "Use proactively whenever the user or another agent needs to find code, files, symbols, or implementations in this repository. MUST BE USED for any \"where is X\", \"which file defines Y\", \"find all callers of Z\", \"where do we handle W\" style request, and for open-ended codebase exploration where the location is not yet known. Returns paths and pointers — never reads whole files, never summarizes, never writes a tutorial.",
+    "category": "agent",
+    "section": "Codebase",
+    "triggers": [
+      "find where X is implemented",
+      "where does X live"
+    ]
+  },
+  {
+    "name": "alan-codebase-pattern-finder",
+    "path": "agents/alan-codebase-pattern-finder.md",
+    "description": "Find similar implementations and usage examples. Use when you need concrete code examples of how things are done.",
+    "category": "agent",
+    "section": "Codebase",
+    "triggers": [
+      "find similar implementations",
+      "show me examples of X pattern"
+    ]
+  },
+  {
+    "name": "alan-conflict-resolver",
+    "path": "agents/alan-conflict-resolver.md",
+    "description": "Resolve git merge conflicts using intent-aware reasoning from research docs, plans, and commit messages.",
+    "category": "agent",
+    "section": "Codebase",
+    "triggers": [
+      "resolve merge conflict",
+      "fix conflict in X"
+    ]
+  },
+  {
+    "name": "alan-exa-search",
+    "path": "skills/alan-exa-search/SKILL.md",
+    "description": "AI-native web search with semantic understanding, domain filtering, and content retrieval. Requires EXA_API_KEY.",
+    "category": "skill",
+    "section": "Skills",
+    "triggers": [
+      "search the web semantically",
+      "find similar pages",
+      "fetch URL content"
+    ]
+  },
+  {
+    "name": "alan-executor",
+    "path": "agents/alan-executor.md",
+    "description": "Implement a single plan phase by reading the plan phase description, matching existing codebase patterns, and mutating files. Runs verification (tests/lint/typecheck) before returning.",
+    "category": "agent",
+    "section": "Pipeline",
+    "triggers": [
+      "execute phase N of a plan (foreman-dispatched worker)"
+    ]
+  },
+  {
+    "name": "alan-github",
+    "path": "skills/alan-github/SKILL.md",
+    "description": "Manage GitHub Issues and Projects V2 boards via the gh CLI. All scripts output JSON to stdout.",
+    "category": "skill",
+    "section": "Skills",
+    "triggers": [
+      "create a GitHub issue",
+      "move this to the project board",
+      "milestones and issues"
+    ]
+  },
+  {
+    "name": "alan-memory-locator",
+    "path": "agents/alan-memory-locator.md",
+    "description": "Search Alan's memory for relevant prior context — past decisions, session notes, lessons learned.",
+    "category": "agent",
+    "section": "Memory",
+    "triggers": [
+      "find prior context about X from Alan's memory (subagent-friendly)"
+    ]
+  },
+  {
+    "name": "alan-memory-search",
+    "path": "skills/alan-memory-search/SKILL.md",
+    "description": "Search Alan's indexed memory via engram's daemon for knowledge files, session context, and facts.",
+    "category": "skill",
+    "section": "Memory",
+    "triggers": [
+      "search memory for X",
+      "what do we know about X"
+    ]
+  },
+  {
+    "name": "alan-plan-change-synthesizer",
+    "path": "agents/alan-plan-change-synthesizer.md",
+    "description": "Synthesize a structured list of plan modifications from verification findings, user feedback, and research results. Returns a change list; orchestrator applies Edits.",
+    "category": "agent",
+    "section": "Planning",
+    "triggers": [
+      "apply these plan-verification fixes",
+      "turn feedback into plan edits"
+    ]
+  },
+  {
+    "name": "alan-plan-critic",
+    "path": "agents/alan-plan-critic.md",
+    "description": "Judge a plan document's content quality. Extract findings, classify fixes as simple or substantive, return a verdict.",
+    "category": "agent",
+    "section": "Planning",
+    "triggers": [
+      "critique this plan",
+      "is this plan ready to implement"
+    ]
+  },
+  {
+    "name": "alan-plan-synthesizer",
+    "path": "agents/alan-plan-synthesizer.md",
+    "description": "Synthesize a full implementation plan document from research findings, codebase context, and user requirements. Returns plan body prose for the orchestrator to write.",
+    "category": "agent",
+    "section": "Planning",
+    "triggers": [
+      "write a plan for X",
+      "draft an implementation plan (content production)"
+    ]
+  },
+  {
+    "name": "alan-prd-builder",
+    "path": "skills/alan-prd-builder/SKILL.md",
+    "description": "Build a structured PRD from a project idea through iterative brainstorming, research, and refinement. Pure content producer — called by brainstorm command, not intended for direct invocation.",
+    "category": "skill",
+    "section": "Skills",
+    "triggers": [
+      "build a PRD (invoked by brainstorm)"
+    ]
+  },
+  {
+    "name": "alan-report-context",
+    "path": "agents/alan-report-context.md",
+    "description": "Read parent job reports and summarize what matters for the current job. Use when a job has depends_on parents.",
+    "category": "agent",
+    "section": "Memory",
+    "triggers": [
+      "summarize parent job reports for this job"
+    ]
+  },
+  {
+    "name": "alan-research-synthesizer",
+    "path": "agents/alan-research-synthesizer.md",
+    "description": "Decompose a research question and synthesize multi-agent findings into coherent research document content. Returns prose for the orchestrator to write.",
+    "category": "agent",
+    "section": "Research",
+    "triggers": [
+      "synthesize these research findings",
+      "turn these findings into a research doc"
+    ]
+  },
+  {
+    "name": "alan-security-reviewer",
+    "path": "agents/alan-security-reviewer.md",
+    "description": "Review changed TypeScript and shell code for security vulnerabilities. Report findings only.",
+    "category": "agent",
+    "section": "Codebase",
+    "triggers": [
+      "security review",
+      "check for security issues",
+      "audit this change"
+    ]
+  },
+  {
+    "name": "alan-task-builder",
+    "path": "skills/alan-task-builder/SKILL.md",
+    "description": "Decompose an approved PRD into milestones and self-contained task descriptions. Pure content producer — called by brainstorm command, not intended for direct invocation.",
+    "category": "skill",
+    "section": "Skills",
+    "triggers": [
+      "decompose this PRD into tasks (invoked by brainstorm)"
+    ]
+  },
+  {
+    "name": "alan-thoughts-analyzer",
+    "path": "agents/alan-thoughts-analyzer.md",
+    "description": "Analyze research/plan documents to extract actionable insights. Filters noise from signal.",
+    "category": "agent",
+    "section": "Research",
+    "triggers": [
+      "what's actionable in this research doc",
+      "extract decisions from this plan"
+    ]
+  },
+  {
+    "name": "alan-thoughts-locator",
+    "path": "agents/alan-thoughts-locator.md",
+    "description": "Use proactively whenever the user or another agent needs to find prior research, plans, decisions, progress, or notes in this project's thoughts/ and .alan/jobs/ directories. MUST BE USED before starting any new research or planning work, and for any \"what have I written about X\", \"is there prior research on Y\", \"find notes on Z\", \"what's the status of W\" style request. Returns categorized paths with filename-derived titles. Never reads file contents; never summarizes.",
+    "category": "agent",
+    "section": "Research",
+    "triggers": [
+      "find prior research on X",
+      "what have I written about X",
+      "find notes on X"
+    ]
+  },
+  {
+    "name": "alan-web-search-researcher",
+    "path": "agents/alan-web-search-researcher.md",
+    "description": "Research topics via web search. Use for documentation, APIs, and information beyond training data.",
+    "category": "agent",
+    "section": "Research",
+    "triggers": [
+      "search the web for X",
+      "find docs on X",
+      "look up X online"
+    ]
+  },
+  {
+    "name": "alan:add-todo",
+    "path": "commands/alan-add-todo.md",
+    "description": "Create a new pending work item in thoughts/todos/",
+    "category": "command",
+    "section": "Memory",
+    "triggers": [
+      "remind me to X",
+      "add a todo",
+      "/alan:add-todo"
+    ]
+  },
+  {
+    "name": "alan:bench-loop",
+    "path": "commands/alan-bench-loop.md",
+    "description": "Benchmark-native autoresearch loop for optimizing agent prompts using deterministic scoring",
+    "category": "command",
+    "section": "Meta",
+    "triggers": [
+      "run the benchmark autoresearch loop",
+      "/alan:bench-loop"
+    ]
+  },
+  {
+    "name": "alan:brainstorm",
+    "path": "commands/alan-brainstorm.md",
+    "description": "Turn a project idea into a structured PRD and self-contained implementation tasks. Orchestrates alan-prd-builder and alan-task-builder skills, then creates Alan jobs and optionally GitHub issues.",
+    "category": "command",
+    "section": "Planning",
+    "triggers": [
+      "turn this idea into a PRD",
+      "/alan:brainstorm"
+    ]
+  },
+  {
+    "name": "alan:brief",
+    "path": "commands/alan-brief.md",
+    "description": "Generate morning brief dashboard",
+    "category": "command",
+    "section": "Memory",
+    "triggers": [
+      "morning brief",
+      "what's the plan for today",
+      "/alan:brief"
+    ]
+  },
+  {
+    "name": "alan:calibrate",
+    "path": "commands/alan-calibrate.md",
+    "description": "Recalibrate agent templates with project-specific knowledge (lightweight -- no knowledge file generation)",
+    "category": "command",
+    "section": "Meta",
+    "triggers": [
+      "calibrate the templates for this project",
+      "/alan:calibrate"
+    ]
+  },
+  {
+    "name": "alan:cc-version-check",
+    "path": "commands/alan-cc-version-check.md",
+    "description": "Analyze CC release notes between two versions and queue for_review jobs",
+    "category": "command",
+    "section": "Operations",
+    "triggers": [
+      "check Claude Code release notes",
+      "/alan:cc-version-check"
+    ]
+  },
+  {
+    "name": "alan:check-todos",
+    "path": "commands/alan-check-todos.md",
+    "description": "List pending todos and offer to work on, close, or defer them",
+    "category": "command",
+    "section": "Memory",
+    "triggers": [
+      "what todos do I have",
+      "/alan:check-todos"
+    ]
+  },
+  {
+    "name": "alan:cleanup",
+    "path": "commands/alan-cleanup.md",
+    "description": "Clean up stranded worktrees and promote artifacts from completed/ stragglers",
+    "category": "command",
+    "section": "Operations",
+    "triggers": [
+      "clean up stranded worktrees",
+      "/alan:cleanup"
+    ]
+  },
+  {
+    "name": "alan:consolidate",
+    "path": "commands/alan-consolidate.md",
+    "description": "Manually catch up on missed consolidation runs",
+    "category": "command",
+    "section": "Memory",
+    "triggers": [
+      "consolidate today's memory",
+      "/alan:consolidate"
+    ]
+  },
+  {
+    "name": "alan:discuss",
+    "path": "commands/alan-discuss.md",
+    "description": "Discuss and refine feature ideas through collaborative thinking",
+    "category": "command",
+    "section": "Planning",
+    "triggers": [
+      "let's talk through this idea",
+      "discuss an approach",
+      "/alan:discuss"
+    ]
+  },
+  {
+    "name": "alan:handoff",
+    "path": "commands/alan-handoff.md",
+    "description": "Hand off interactive session work to a background job that picks up from the right pipeline stage",
+    "category": "command",
+    "section": "Memory",
+    "triggers": [
+      "hand off this interactive work to a background job",
+      "/alan:handoff"
+    ]
+  },
+  {
+    "name": "alan:implement",
+    "path": "commands/alan-implement.md",
+    "description": "Implement technical plans phase-by-phase with verification",
+    "category": "command",
+    "section": "Pipeline",
+    "triggers": [
+      "implement this plan",
+      "/alan:implement <plan>"
+    ]
+  },
+  {
+    "name": "alan:init",
+    "path": "commands/alan-init.md",
+    "description": "Activate Alan for this project by creating .alan/ workspace, deploying agents, and scaffolding thoughts/",
+    "category": "command",
+    "section": "Operations",
+    "triggers": [
+      "initialize Alan for this project",
+      "/alan:init"
+    ]
+  },
+  {
+    "name": "alan:introspect",
+    "path": "commands/alan-introspect.md",
+    "description": "Periodic self-review of system health, memory, todos, and improvement ideas",
+    "category": "command",
+    "section": "Operations",
+    "triggers": [
+      "run a self-review",
+      "periodic health check",
+      "/alan:introspect"
+    ]
+  },
+  {
+    "name": "alan:iterate",
+    "path": "commands/alan-iterate.md",
+    "description": "Update existing implementation plans based on verification feedback or user input",
+    "category": "command",
+    "section": "Pipeline",
+    "triggers": [
+      "update this plan with the verification feedback",
+      "/alan:iterate"
+    ]
+  },
+  {
+    "name": "alan:jobs",
+    "path": "commands/alan-jobs.md",
+    "description": "List pending and active jobs, offer to work on one",
+    "category": "command",
+    "section": "Operations",
+    "triggers": [
+      "what's in the job queue",
+      "show pending jobs",
+      "/alan:jobs"
+    ]
+  },
+  {
+    "name": "alan:learn",
+    "path": "commands/alan-learn.md",
+    "description": "Discover project structure, calibrate agents, and bootstrap knowledge files",
+    "category": "command",
+    "section": "Memory",
+    "triggers": [
+      "learn this project",
+      "bootstrap knowledge files",
+      "/alan:learn"
+    ]
+  },
+  {
+    "name": "alan:peek",
+    "path": "commands/alan-peek.md",
+    "description": "Show filtered transcript of an active job",
+    "category": "command",
+    "section": "Memory",
+    "triggers": [
+      "peek at a running job's transcript",
+      "/alan:peek"
+    ]
+  },
+  {
+    "name": "alan:plan",
+    "path": "commands/alan-plan.md",
+    "description": "Create detailed implementation plans through interactive research and iteration",
+    "category": "command",
+    "section": "Planning",
+    "triggers": [
+      "plan this feature",
+      "/alan:plan (interactive plan authoring)"
+    ]
+  },
+  {
+    "name": "alan:process-job",
+    "path": "commands/alan-process-job.md",
+    "description": "Process a queued job by reading its goal and executing the appropriate workflow",
+    "category": "command",
+    "section": "Meta",
+    "triggers": [
+      "process a queued background job (dispatcher-invoked)"
+    ]
+  },
+  {
+    "name": "alan:reboot",
+    "path": "commands/alan-reboot.md",
+    "description": "Reboot the current Alan session to pick up new skills, agents, or configuration changes",
+    "category": "command",
+    "section": "Operations",
+    "triggers": [
+      "reboot Alan",
+      "reload skills",
+      "/alan:reboot"
+    ]
+  },
+  {
+    "name": "alan:recap",
+    "path": "commands/alan-recap.md",
+    "description": "Search memory and synthesize a narrative recap",
+    "category": "command",
+    "section": "Memory",
+    "triggers": [
+      "recap what we did",
+      "summarize recent work",
+      "/alan:recap"
+    ]
+  },
+  {
+    "name": "alan:research",
+    "path": "commands/alan-research.md",
+    "description": "Research codebase and produce standalone research document",
+    "category": "command",
+    "section": "Planning",
+    "triggers": [
+      "research and write a doc",
+      "/alan:research"
+    ]
+  },
+  {
+    "name": "alan:review",
+    "path": "commands/alan-review.md",
+    "description": "Post-implementation code review with severity-based verdict",
+    "category": "command",
+    "section": "Pipeline",
+    "triggers": [
+      "review the implementation",
+      "/alan:review"
+    ]
+  },
+  {
+    "name": "alan:self-improve",
+    "path": "commands/alan-self-improve.md",
+    "description": "Signal-driven self-improvement — pick highest-friction prompt target, run eval loop, create PR on improvement",
+    "category": "command",
+    "section": "Operations",
+    "triggers": [
+      "improve a prompt",
+      "run eval loop",
+      "/alan:self-improve"
+    ]
+  },
+  {
+    "name": "alan:sprint",
+    "path": "commands/alan-sprint.md",
+    "description": "Batch triage of for_review and pending todo items",
+    "category": "command",
+    "section": "Pipeline",
+    "triggers": [
+      "batch-triage for-review items",
+      "/alan:sprint"
+    ]
+  },
+  {
+    "name": "alan:status",
+    "path": "commands/alan-status.md",
+    "description": "Show Alan's current state -- jobs, memory, system health",
+    "category": "command",
+    "section": "Operations",
+    "triggers": [
+      "how's Alan doing",
+      "what's the system state",
+      "/alan:status"
+    ]
+  },
+  {
+    "name": "alan:triage",
+    "path": "commands/alan-triage.md",
+    "description": "Investigate and resolve error-generated triage jobs",
+    "category": "command",
+    "section": "Operations",
+    "triggers": [
+      "investigate a triage job",
+      "/alan:triage"
+    ]
+  },
+  {
+    "name": "alan:verify",
+    "path": "commands/alan-verify.md",
+    "description": "Verify an implementation plan is complete, well-structured, and ready to implement",
+    "category": "command",
+    "section": "Pipeline",
+    "triggers": [
+      "verify this plan is ready",
+      "/alan:verify"
+    ]
+  }
+]

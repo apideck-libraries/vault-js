@@ -1,0 +1,22 @@
+{
+  "version": 3,
+  "project": {
+    "name": "vault-js",
+    "description": "Vanilla JavaScript library to embed Apideck Vault (an integrations modal) into any web application via an iframe + postMessage bridge"
+  },
+  "overlays": {
+    "agents/alan-codebase-locator.md": {
+      "directory_layout": "This is a tiny TypeScript library (~3 source files). Source lives in `src/`: `src/index.ts` is the main entry — exports the `ApideckVault` singleton (`open`/`close` methods) that creates an iframe pointed at `https://vaultjs.apideck.com` and wires up postMessage listeners; `src/index.umd.ts` is the UMD-format entry that re-exports `ApideckVault` as default; `src/types.ts` holds all TypeScript types (`ApideckVaultOptions`, `Connection`, `ConnectionViewType`, `FormField`, etc.). Tests live in `test/` (jest via tsdx, single file `test/index.test.ts`). Build artifacts go to `dist/` (UMD, ESM, CJS bundles produced by tsdx). The `dev/` directory has an `index.html` for manual local testing via `parcel dev/index.html`. CI workflows live in `workflows/` (not `.github/workflows/`) — note this is non-standard. Configs at root: `tsconfig.json`, `tsdx.config.js` (rollup override for UMD), `package.json` (prettier + size-limit + husky configured inline)."
+    },
+    "agents/alan-codebase-analyzer.md": {
+      "source_dirs": "- `src/index.ts` — the entire public API surface (`ApideckVault.open()` and `ApideckVault.close()`); creates an iframe, mounts it to `document.body`, and bridges to the Vault SPA via `window.postMessage`\n- `src/types.ts` — all exported types (`ApideckVaultOptions`, `Connection`, `FormField`, `ConnectionViewType` enum, etc.)\n- `src/index.umd.ts` — UMD entry; only re-exports the default for global `window.ApideckVault` consumption\n- `test/index.test.ts` — Jest tests (run via `tsdx test`); single suite that mocks `document.createElement` and verifies iframe styles"
+    },
+    "agents/alan-codebase-pattern-finder.md": {
+      "common_patterns": "- Closure-based module pattern: `createApideckVault()` factory returns an object with `open`/`close` methods; module-level `modal` variable holds the singleton iframe reference\n- postMessage protocol: incoming `event.data` is either a string (`'on-ready'`, `'on-close'`) or an object with `{ type, data }` shape for connection events\n- Options destructure: callback options (`onClose`, `onReady`, etc.) are split off before forwarding `otherOptions` to the iframe via postMessage\n- Cleanup via `setTimeout` after iframe close events (300ms/500ms timers) to allow CSS transitions",
+      "project_patterns": "- New options: add to `ApideckVaultOptions` in `src/types.ts`, then to the README properties table; non-callback options flow through automatically via the `...otherOptions` spread\n- New callbacks: destructure in `open()` and call from the appropriate `event.data` branch in `onMessage`\n- New postMessage event types: add a `case` to the `switch (event.data?.type)` block\n- Tests use `jest.spyOn` on DOM APIs (`document.createElement`, `document.body.appendChild`); mock the iframe by returning a partial `HTMLIFrameElement` cast as `any`"
+    },
+    "CLAUDE.md": {
+      "project_commands": "- Test: `yarn test` (tsdx test, Jest under the hood)\n- Lint: `yarn lint` (tsdx lint, ESLint via tsdx defaults; also runs as husky pre-commit hook)\n- Build: `yarn build` (tsdx build --format umd,esm,cjs)\n- Size check: `yarn size` (size-limit, 10 KB budget per ESM/CJS bundle)\n- Dev playground: `yarn dev` (parcel serves `dev/index.html`)"
+    }
+  }
+}

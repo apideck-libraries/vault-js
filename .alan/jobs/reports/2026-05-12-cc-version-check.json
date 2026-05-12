@@ -1,0 +1,4 @@
+{
+  "what_done": "Established baseline Claude Code version 2.1.138 in .alan/cc-version.json",
+  "what_open": "Future runs will compare against 2.1.138 and trigger cc-version-check skill when updates are detected"
+}
