@@ -12,6 +12,7 @@ const createApideckVault = () => {
     modal.style.height = '100%';
     modal.style.border = 'none';
     modal.style.zIndex = '9999';
+    modal.allow = 'clipboard-write';
     modal.src = vaultIframeUrl;
 
     return modal;
