@@ -3,3 +3,8 @@
 node_modules
 dist
 .parcel-cache
+.alan/*
+!.alan/knowledge/
+!.alan/CLAUDE.md
+!.alan/RESOLVER.md
+thoughts/tmp/
