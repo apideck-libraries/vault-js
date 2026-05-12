@@ -31,4 +31,10 @@ describe('ApideckVault', () => {
       zIndex: '9999',
     });
   });
+
+  it('should grant clipboard-write to the iframe', () => {
+    ApideckVault.open({ token: 'foo' });
+
+    expect(mockIframe.allow).toBe('clipboard-write');
+  });
 });
